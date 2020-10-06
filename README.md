@@ -11,21 +11,22 @@ R2-D2 is a fun Discord companion that 'boops' to your every 'beep'. Although R2-
 ```
 Some basic commands:
 
-- ?8ball [question] | Returns a random R2-D2 response.
-- ?clear [# of messages] | Purges the given number of messages in the channel (default of 5).
-- ?ban ["member name"#"member discriminator"] | Bans the given member.
+?8ball [question] | Returns a random R2-D2 response.
+?clear [# of messages] | Purges the given number of messages in the channel (default of 5).
+?ban ["member name"#"member discriminator"] | Bans the given member.
 
 ```
 
 ## Progress
 
+- [x] Finish basic administrative commands
 - [ ] Create cogs
 - [ ] Implement music players and searching
 - [ ] \(Possible future update) Use voice control
 
 ## Developers
 
-@kggurram @daoudali
+@kggurram @daoudali :computer:
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit)
