@@ -2,23 +2,19 @@ import discord
 from discord.ext import commands
 import random
 import os
+from dotenv import load_dotenv
 import urllib.parse, urllib.request, re
 import datetime
 # from discord import Reaction
 
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+
 r2d2 = commands.Bot(command_prefix = '?')
 
-# @r2d2.event
-# async def on_ready():
-#     print("Beep, boop.")
-
-# @r2d2.event
-# async def on_member_join(member):
-#     print("Beep, boop.")
-
-# @r2d2.event
-# async def on_member_remove(member):
-#     print("Boooop. :(")
+@r2d2.event
+async def on_ready():
+    print("Beep, boop.")
 
 @r2d2.command()
 async def beep(ctx):
@@ -50,6 +46,7 @@ async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     
 @r2d2.command()
+@commands.has_any_role("Administrator, Bot")
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f"{member.mention}, twee-vwoop ZZT! >:(")
@@ -74,5 +71,10 @@ async def yTube(ctx, *, search):
     search_results = re.findall('href=\"\\/watch\\?v=(.{11})', html_content.read().decode())
     print(search_results)
     await ctx.send('https://www.youtube.com/watch?v=' + search_results[0])
-    
-r2d2.run("NDU0NzU3Mjk3MjM1Njg5NDg1.WxrzvA.9n-_lmeZ5tPBmlqX6rNH8z7DYi8")
+
+@r2d2.event
+async def on_command_error(ctx, error):
+    print(ctx.command.name + "was invoked incorrectly.")
+    print(error)
+
+r2d2.run(TOKEN)
