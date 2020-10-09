@@ -1,4 +1,5 @@
 #import libraries
+import discord
 from discord.ext import commands
 
 #event listeners class
@@ -9,6 +10,7 @@ class CommandEvents(commands.Cog):
     #bot is ready alert
     @commands.Cog.listener()
     async def on_ready(self):
+        await self.bot.change_presence(status=discord.Status.online, activity=discord.Game('X-Wing Simulator'))
         print("Beep, boop.")
 
     #command errors

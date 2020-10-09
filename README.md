@@ -20,7 +20,7 @@ Some basic commands:
 ## Progress
 
 - [x] Finish basic administrative commands
-- [ ] Create cogs
+- [x] Create cogs
 - [ ] Implement music players and searching
 - [ ] \(Possible future update) Use voice control
 
