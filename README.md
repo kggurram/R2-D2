@@ -26,7 +26,7 @@ Some basic commands:
 
 ## Developers
 
-@kggurram @daoudali :computer:
+@kggurram @daoudali @tariqqureshey :computer:
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit)
