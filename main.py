@@ -7,9 +7,9 @@ from itertools import cycle
 
 #status list - need to add more
 status = cycle(['X-Wing Simulator',
-                'Death Star Decimator'
+                'Death Star Decimator',
                 'Rebel Anthem',
-                'Age of Empires: Star Wars',
+                'Battlefront II (2005)',
                 "with Leia's heart",
                 'Saving Luke',
                 'the Skywalker Theme',
