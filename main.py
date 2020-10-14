@@ -7,11 +7,7 @@ from itertools import cycle
 
 #status list - need to add more
 status = cycle(['X-Wing Simulator',
-<<<<<<< Updated upstream
                 'Death Star Decimator',
-=======
-                'Death Star Decimator', 
->>>>>>> Stashed changes
                 'Rebel Anthem',
                 'Battlefront II (2005)',
                 "with Leia's heart",
