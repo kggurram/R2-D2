@@ -24,6 +24,23 @@ class Trivia(commands.Cog):
           "A"
           )
 
+    q3 = ("Who served as Jabba the Hutt's chief of staff?",
+          "A. Nute Gunray",
+          "B. Maz Kanata",
+          "C. Bib Fortuna",
+          "D. Sarlacc",
+          "C"
+          )
+
+    q4 = ("Approximately how many languages can C-3PO speak?",
+          "A. 6 Million",
+          "B. 6 Billion",
+          "C. 6 Trillion",
+          "D. 6 Thousand",
+          "A")
+
+    q5 = ("")
+
 
     @commands.command()
     async def trivia(self, ctx):
