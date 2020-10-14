@@ -7,7 +7,11 @@ from itertools import cycle
 
 #status list - need to add more
 status = cycle(['X-Wing Simulator',
+<<<<<<< Updated upstream
                 'Death Star Decimator',
+=======
+                'Death Star Decimator', 
+>>>>>>> Stashed changes
                 'Rebel Anthem',
                 'Battlefront II (2005)',
                 "with Leia's heart",
@@ -25,7 +29,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 r2d2 = commands.Bot(command_prefix = '?')
 
 #list of cog files
-extensions = ['cogs.Administrator', 'cogs.CommandEvents', 'cogs.Misc', 'cogs.AV']
+extensions = ['cogs.Administrator', 'cogs.CommandEvents', 'cogs.Misc', 'cogs.AV', 'cogs.Trivia']
 
 #load cog files
 if __name__ == "__main__":
