@@ -4,7 +4,7 @@ BOOP twee-vwoop VRrrUHD bleep.
 
 ## Overview
 
-R2-D2 is a fun Discord companion that 'boops' to your every 'beep'. Although R2-D2 is meant to be of casual funciontality, there are still various commands that can be used to aid your day to day life on Discord.
+R2-D2 is a fun Discord companion that 'boops' to your every 'beep'. Although R2-D2 is meant to be of casual functionality, there are still various commands that can be used to aid your day to day life on Discord.
 
 ## Usage
 
