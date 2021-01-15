@@ -21,8 +21,9 @@ Some basic commands:
 
 - [x] Finish basic administrative commands
 - [x] Create cogs
-- [ ] Implement music players and searching
-- [ ] \(Possible future update) Use voice control
+- [x] Implement YouTube searching
+- [ ] Implement image and GIF searching
+- [ ] Implement music player
 
 ## Developers
 
