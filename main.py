@@ -5,7 +5,6 @@ import os
 from dotenv import load_dotenv
 from itertools import cycle 
 
-
 #status list - need to add more
 status = cycle(['X-Wing Simulator',
                 'Death Star Decimator',
@@ -43,8 +42,6 @@ async def on_ready():
 @tasks.loop(seconds=60)
 async def change_status():
     await r2d2.change_presence(activity=discord.Game(next(status))) #switched to next status
-
-
 
 #run bot
 r2d2.run(TOKEN)

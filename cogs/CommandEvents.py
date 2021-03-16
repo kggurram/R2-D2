@@ -2,7 +2,6 @@
 import discord
 from discord.ext import commands
 
-
 #event listeners class
 class CommandEvents(commands.Cog):
     def __init__(self, bot):
