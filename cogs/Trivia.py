@@ -7,8 +7,6 @@ class Trivia(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-
     @commands.command()
     async def trivia(self, ctx):
         global answer   
@@ -72,7 +70,6 @@ class Trivia(commands.Cog):
         #Ask Question/Display Options to channel
         await ctx.send(f'{question}\n{opt1}\n{opt2}\n{opt3}\n{opt4}\n\nType in your answer below starting with ! (for example "!A" for option A) ') 
           
-
     #Recieve user input and check with answer
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -84,10 +81,6 @@ class Trivia(commands.Cog):
           await channel.send("Correct! I praise your galatic knowledge. Thank you for playing!")
           return
         await channel.send("Incorrect. Please prepare for the battle next time.")
-
-        
-        
-
 
 #required setup def
 def setup(bot):

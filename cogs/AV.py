@@ -5,6 +5,7 @@ from collections import deque
 from tempfile import TemporaryFile
 from gtts import  gTTS
 import urllib.parse, urllib.request, re
+from asyncio import sleep
 
 #Audio/Visual commands class
 class AV(commands.Cog):
@@ -56,6 +57,9 @@ class AV(commands.Cog):
                 tts.write_to_fp(f)
                 f.seek(0)
                 vc.play(discord.FFmpegPCMAudio(f, pipe=True))
+                while vc.is_playing():
+                    await sleep(3)
+                await vc.disconnect()
             else:
                 message_queue.append(message)
                 while vc.is_playing():
@@ -65,6 +69,9 @@ class AV(commands.Cog):
                 tts.write_to_fp(f)
                 f.seek(0)
                 vc.play(discord.FFmpegPCMAudio(f, pipe=True))
+                while vc.is_playing():
+                    await sleep(3)
+                await vc.disconnect()
         except(TypeError, AttributeError):
             try:
                 tts = gTTS(message)
@@ -74,11 +81,14 @@ class AV(commands.Cog):
                 channel = ctx.message.author.voice.channel
                 vc = await channel.connect()
                 vc.play(discord.FFmpegPCMAudio(f, pipe=True))
+                while vc.is_playing():
+                    await sleep(3)
+                await vc.disconnect()
             except(AttributeError, TypeError):
                 await ctx.send("I'm not in a voice channel and neither are you!")
             return
         f.close()
-        leave(ctx)
+        
 
 #required setup def
 def setup(bot):
