@@ -4,8 +4,8 @@ import discord
 
 #Admin commands class
 class Administrator(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, r2d2):
+        self.r2d2 = r2d2
     
     #kick command (only for Admin, Mod, or Bot roles)
     @commands.command()
@@ -36,5 +36,5 @@ class Administrator(commands.Cog):
                 return
 
 #required setup def
-def setup(bot):
-    bot.add_cog(Administrator(bot))
+def setup(r2d2):
+    r2d2.add_cog(Administrator(r2d2))

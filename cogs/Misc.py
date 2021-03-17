@@ -4,8 +4,8 @@ import random
 
 #Miscellaneous commands class
 class Misc(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, r2d2):
+        self.r2d2 = r2d2
     
     #ping pong, space robot edition
     @commands.command()
@@ -15,7 +15,7 @@ class Misc(commands.Cog):
     #latency command
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send(f"Beep zzt boop: {round(self.bot.latency * 1000)} ms") #return bot latency
+        await ctx.send(f"Beep zzt boop: {round(self.r2d2.latency * 1000)} ms") #return bot latency
 
     #purge messages command
     @commands.command(aliases=["purge", "decimate", "destroy"])
@@ -37,5 +37,5 @@ class Misc(commands.Cog):
         await ctx.send(f"{random.choice(responses)}") #return a random response from list
 
 #required setup def
-def setup(bot):
-    bot.add_cog(Misc(bot))
+def setup(r2d2):
+    r2d2.add_cog(Misc(r2d2))

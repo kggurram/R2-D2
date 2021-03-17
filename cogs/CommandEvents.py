@@ -4,8 +4,8 @@ from discord.ext import commands
 
 #event listeners class
 class CommandEvents(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, r2d2):
+        self.r2d2 = r2d2
 
     #command errors
     @commands.Cog.listener()
@@ -14,5 +14,5 @@ class CommandEvents(commands.Cog):
         print(error) #print error
 
 #required setup def
-def setup(bot):
-    bot.add_cog(CommandEvents(bot))
+def setup(r2d2):
+    r2d2.add_cog(CommandEvents(r2d2))

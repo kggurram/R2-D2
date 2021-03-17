@@ -1,6 +1,7 @@
 # Keys and Tokens #
 ###################
 *.env
+*.txt
 
 # Compiled source #
 ###################

@@ -22,7 +22,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 #set command prefix
-r2d2 = commands.Bot(command_prefix = '?')
+r2d2 = commands.Bot(command_prefix = '>')
 
 #list of cog files
 extensions = ['cogs.Administrator', 'cogs.CommandEvents', 'cogs.Misc', 'cogs.AV', 'cogs.Trivia']
