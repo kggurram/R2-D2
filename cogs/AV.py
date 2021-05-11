@@ -17,12 +17,12 @@ import youtube_dl
 # from main import r2d2
 
 #google project API
-apikeyfile = open("D:\\Projects\GitHub\R2-D2\\apikey.txt", 'r')
+apikeyfile = open("E:\\Projects\\GitHub\\R2-D2\\apikey.txt", 'r')
 apikey = apikeyfile.read()
 apikeyfile.close()
 
 #google search engine token
-cxfile = open("D:\\Projects\GitHub\R2-D2\\cx.txt", 'r')
+cxfile = open("E:\\Projects\\GitHub\\R2-D2\\cx.txt", 'r')
 cx = cxfile.read()
 cxfile.close()
 gis = GoogleImagesSearch(apikey, cx)
@@ -68,7 +68,7 @@ class AV(commands.Cog):
         message_queue = deque([])
         message = ctx.message.content[5:]
         user = ctx.message.author.display_name
-        message = user + " says " + message
+        # message = user + " says " + message
         try:
             vc = ctx.message.guild.voice_client
             if not vc.is_playing():
@@ -270,23 +270,23 @@ class AV(commands.Cog):
     #google image search command
     @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])
     async def googleimage(self, ctx,*imaged):
-        Images_infile = os.path.isdir("D:\Projects\GitHub\R2-D2\Images")
+        Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
         await ctx.send("Beep, boop...")
         try:
-            Images_folder = "D:\Projects\GitHub\R2-D2\Images"
+            Images_folder = "E:\Projects\GitHub\R2-D2\Images"
             if Images_infile is True:
                 shutil.rmtree(Images_folder)
                 print("Removed old Images folder")
-                os.mkdir("D:\Projects\GitHub\R2-D2\Images")
+                os.mkdir("E:\Projects\GitHub\R2-D2\Images")
                 print("Made new Images folder")
             else:
-                os.mkdir("D:\Projects\GitHub\R2-D2\Images")
+                os.mkdir("E:\Projects\GitHub\R2-D2\Images")
                 print("images_infile was false, making images folder")
         except:
             print("No old images folder")
-            os.mkdir("D:\Projects\GitHub\R2-D2\Images")
+            os.mkdir("E:\Projects\GitHub\R2-D2\Images")
             print("Made new images folder")
-        Images_infile2 = os.path.isdir("D:\Projects\GitHub\R2-D2\Images")
+        Images_infile2 = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
         if Images_infile2 is False:
             return await ctx.send("Brrp-bloop :(")
         q = " ".join(imaged)
@@ -301,17 +301,17 @@ class AV(commands.Cog):
             'imgSize': None,
             'imgDominantColor': None
         }
-        gis.search(search_params=_search_params, path_to_dir='D:\Projects\GitHub\R2-D2\Images')
+        gis.search(search_params=_search_params, path_to_dir='E:\Projects\GitHub\R2-D2\Images')
         count = 1
-        dirrr = "D:\Projects\GitHub\R2-D2\Images"
+        dirrr = "E:\Projects\GitHub\R2-D2\Images"
         for file in os.listdir(dirrr):
             if file.endswith(".jpg"):
-                os.rename(f"D:\Projects\GitHub\R2-D2\Images\{file}",
-                          f"D:\Projects\GitHub\R2-D2\Images\image{count}.jpg")
+                os.rename(f"E:\Projects\GitHub\R2-D2\Images\{file}",
+                          f"E:\Projects\GitHub\R2-D2\Images\image{count}.jpg")
                 count += 1
-        for image in os.listdir('D:\Projects\GitHub\R2-D2\Images'):
+        for image in os.listdir('E:\Projects\GitHub\R2-D2\Images'):
             if image.startswith("image"):
-                await ctx.send(file=discord.File(f'D:\Projects\GitHub\R2-D2\Images\{image}'))
+                await ctx.send(file=discord.File(f'E:\Projects\GitHub\R2-D2\Images\{image}'))
 
 #required setup def
 def setup(r2d2):
