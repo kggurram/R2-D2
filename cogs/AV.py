@@ -8,6 +8,7 @@ import urllib.parse, urllib.request, re
 from asyncio import sleep, queues
 import shutil
 import os
+import sys
 import asyncio
 from googlesearch import search
 from google_images_search import GoogleImagesSearch
@@ -17,15 +18,17 @@ import youtube_dl
 # from main import r2d2
 
 #google project API
-apikeyfile = open("E:\\Projects\\GitHub\\R2-D2\\apikey.txt", 'r')
-apikey = apikeyfile.read()
-apikeyfile.close()
+#apikeyfile = open("E:\\Projects\\GitHub\\R2-D2\\apikey.txt", 'r')
+apikey = 'AIzaSyCQ2MevBaPzf0AoNBI8UAYr-vAgURcAWrs'
+#apikeyfile.close()
+#print(type(apikey))
 
 #google search engine token
-cxfile = open("E:\\Projects\\GitHub\\R2-D2\\cx.txt", 'r')
-cx = cxfile.read()
-cxfile.close()
+#cxfile = open("E:\\Projects\\GitHub\\R2-D2\\cx.txt", 'r')
+cx = '6634bb3e908fed9a0'
+#cxfile.close()
 gis = GoogleImagesSearch(apikey, cx)
+#print(type(cx))
 
 #Audio/Visual commands class
 class AV(commands.Cog):
