@@ -108,163 +108,163 @@ class AV(commands.Cog):
   
     ###################################################################################
 
-    @commands.command(aliases=["p"])
-    async def play(self, ctx, *url: str):
-        print("accepted play command")
-        channel = ctx.message.author.voice.channel
-        voice1 = get(ctx.voice_client, guild=ctx.guild)
+    # @commands.command(aliases=["p"])
+    # async def play(self, ctx, *url: str):
+    #     print("accepted play command")
+    #     channel = ctx.message.author.voice.channel
+    #     voice1 = get(ctx.voice_client, guild=ctx.guild)
 
-        if voice1 is not None:
-            await voice1.move_to(channel)
+    #     if voice1 is not None:
+    #         await voice1.move_to(channel)
 
-        try:
-            await channel.connect()
-        except:
-            print("already in voice channel")
+    #     try:
+    #         await channel.connect()
+    #     except:
+    #         print("already in voice channel")
 
-        def checkqueue():
-            Queue_infile = os.path.isdir("./Queue")
-            if Queue_infile:
-                DIR = os.path.abspath(os.path.realpath("Queue"))
-                length = len(os.listdir(DIR))
-                still_q = length - 1
-                try:
-                    first_file = os.listdir(DIR)[0]
-                    print("first file =" + first_file)
-                except:
-                    print("No more queued songs")
-                    queues.clear()
-                    return
-                main_location = os.path.dirname(
-                    os.path.realpath("./Queue"))
-                print("main location = " + main_location)
-                song_path = os.path.abspath(os.path.realpath("Queue") + "\\" + first_file)
-                print("song path = " + song_path)
-                if length != 0:
-                    print("Song done, playing next queued song\n")
-                    print(f"Songs still in queue: {still_q}")
-                    song_exists = os.path.isfile("song.mp3")
-                    if song_exists:
-                        os.remove("song.mp3")
-                    shutil.move(song_path, main_location)
-                    for file in os.listdir("./"):
-                        if file.endswith(".mp3"):
-                            os.rename(file, 'song.mp3')
-                    voicenew.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: checkqueue())
-                    voicenew.source = discord.PCMVolumeTransformer(voicenew.source)
-                    voicenew.source.volume = 0.15
-                else:
-                    queues.clear()
-                    return
-            else:
-                queues.clear()
-                print("No songs were queued before the ending of the last song")
+    #     def checkqueue():
+    #         Queue_infile = os.path.isdir("./Queue")
+    #         if Queue_infile:
+    #             DIR = os.path.abspath(os.path.realpath("Queue"))
+    #             length = len(os.listdir(DIR))
+    #             still_q = length - 1
+    #             try:
+    #                 first_file = os.listdir(DIR)[0]
+    #                 print("first file =" + first_file)
+    #             except:
+    #                 print("No more queued songs")
+    #                 queues.clear()
+    #                 return
+    #             main_location = os.path.dirname(
+    #                 os.path.realpath("./Queue"))
+    #             print("main location = " + main_location)
+    #             song_path = os.path.abspath(os.path.realpath("Queue") + "\\" + first_file)
+    #             print("song path = " + song_path)
+    #             if length != 0:
+    #                 print("Song done, playing next queued song\n")
+    #                 print(f"Songs still in queue: {still_q}")
+    #                 song_exists = os.path.isfile("song.mp3")
+    #                 if song_exists:
+    #                     os.remove("song.mp3")
+    #                 shutil.move(song_path, main_location)
+    #                 for file in os.listdir("./"):
+    #                     if file.endswith(".mp3"):
+    #                         os.rename(file, 'song.mp3')
+    #                 voicenew.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: checkqueue())
+    #                 voicenew.source = discord.PCMVolumeTransformer(voicenew.source)
+    #                 voicenew.source.volume = 0.15
+    #             else:
+    #                 queues.clear()
+    #                 return
+    #         else:
+    #             queues.clear()
+    #             print("No songs were queued before the ending of the last song")
 
-        song_exists = os.path.isfile("song.mp3")
-        try:
-            if song_exists:
-                os.remove('song.mp3')
-                queues.clear()
-                print("removed existing song")
-        except PermissionError:
-            await ctx.send("Another song is already playing")
-            print("exception error")
-            return
+    #     song_exists = os.path.isfile("song.mp3")
+    #     try:
+    #         if song_exists:
+    #             os.remove('song.mp3')
+    #             queues.clear()
+    #             print("removed existing song")
+    #     except PermissionError:
+    #         await ctx.send("Another song is already playing")
+    #         print("exception error")
+    #         return
 
-        Queue_infile = os.path.isdir("./Queue")
-        try:
-            Queue_folder = "./Queue"
-            if Queue_infile is True:
-                print("Removed old Queue Folder")
-                shutil.rmtree(Queue_folder)
-        except:
-            print("No old queue folder")
+    #     Queue_infile = os.path.isdir("./Queue")
+    #     try:
+    #         Queue_folder = "./Queue"
+    #         if Queue_infile is True:
+    #             print("Removed old Queue Folder")
+    #             shutil.rmtree(Queue_folder)
+    #     except:
+    #         print("No old queue folder")
 
-        await ctx.send("Hold on, getting everything ready (this clears the queue as well)")
+    #     await ctx.send("Hold on, getting everything ready (this clears the queue as well)")
 
-        voicenew = get(ctx.voice_client, guild=ctx.guild)
+    #     voicenew = get(ctx.voice_client, guild=ctx.guild)
 
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': './song.mp3',
-            'postprocessors': [{
-                'key': "FFmpegExtractAudio",
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-        }
+    #     ydl_opts = {
+    #         'format': 'bestaudio/best',
+    #         'outtmpl': './song.mp3',
+    #         'postprocessors': [{
+    #             'key': "FFmpegExtractAudio",
+    #             'preferredcodec': 'mp3',
+    #             'preferredquality': '192',
+    #         }],
+    #     }
 
-        song_search = " ".join(url)
+    #     song_search = " ".join(url)
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            print("downloading audio now...\n")
-            ydl.download([f"ytsearch1:{song_search}"])
+    #     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    #         print("downloading audio now...\n")
+    #         ydl.download([f"ytsearch1:{song_search}"])
 
-        voicenew.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: checkqueue())
-        voicenew.source = discord.PCMVolumeTransformer(voicenew.source)
-        voicenew.source.volume = 0.15
+    #     voicenew.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: checkqueue())
+    #     voicenew.source = discord.PCMVolumeTransformer(voicenew.source)
+    #     voicenew.source.volume = 0.15
 
-        print("playing song successfully")
-        await ctx.send(f"Playing song")
+    #     print("playing song successfully")
+    #     await ctx.send(f"Playing song")
 
-    @commands.command()
-    async def pause(self, ctx):
-        voice2 = get(ctx.voice_client, guild=ctx.guild)
+    # @commands.command()
+    # async def pause(self, ctx):
+    #     voice2 = get(ctx.voice_client, guild=ctx.guild)
 
-        if voice2 and voice2.is_playing():
-            voice2.pause()
-            await ctx.send("Music is paused")
-        elif voice2.is_paused():
-            voice2.resume()
-            await ctx.send("Resuming music")
-        else:
-            await ctx.send("Music isn't playing")
+    #     if voice2 and voice2.is_playing():
+    #         voice2.pause()
+    #         await ctx.send("Music is paused")
+    #     elif voice2.is_paused():
+    #         voice2.resume()
+    #         await ctx.send("Resuming music")
+    #     else:
+    #         await ctx.send("Music isn't playing")
 
-    @commands.command()
-    async def skip(self, ctx):
-        voice3 = get(ctx.voice_client, guild=ctx.guild)
-        queues.clear()
-        if voice3 and voice3.is_playing():
-            voice3.stop()
-            await ctx.send("Song skipped")
-        else:
-            await ctx.send("Music is not playing")
+    # @commands.command()
+    # async def skip(self, ctx):
+    #     voice3 = get(ctx.voice_client, guild=ctx.guild)
+    #     queues.clear()
+    #     if voice3 and voice3.is_playing():
+    #         voice3.stop()
+    #         await ctx.send("Song skipped")
+    #     else:
+    #         await ctx.send("Music is not playing")
 
-    global queues
-    queues = {}
+    # global queues
+    # queues = {}
 
-    @commands.command(aliases=["q", "qu", "que"])
-    async def queue(self, ctx, *url: str):
-        queue_infile = os.path.isdir("./Queue")
-        if queue_infile is False:
-            os.mkdir("./Queue")
-        DIR = os.path.abspath(os.path.realpath("Queue"))
-        qlength = len(os.listdir(DIR))
-        qlength += 1
-        add_queue = True
-        while add_queue:
-            if qlength in queues:
-                qlength += 1
-            else:
-                add_queue = False
-                queues[qlength] = qlength
-        queue_path = os.path.abspath(os.path.realpath("Queue") + f"\song{qlength}.%(ext)s")
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': queue_path,
-            'postprocessors': [{
-                'key': "FFmpegExtractAudio",
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-        }
+    # @commands.command(aliases=["q", "qu", "que"])
+    # async def queue(self, ctx, *url: str):
+    #     queue_infile = os.path.isdir("./Queue")
+    #     if queue_infile is False:
+    #         os.mkdir("./Queue")
+    #     DIR = os.path.abspath(os.path.realpath("Queue"))
+    #     qlength = len(os.listdir(DIR))
+    #     qlength += 1
+    #     add_queue = True
+    #     while add_queue:
+    #         if qlength in queues:
+    #             qlength += 1
+    #         else:
+    #             add_queue = False
+    #             queues[qlength] = qlength
+    #     queue_path = os.path.abspath(os.path.realpath("Queue") + f"\song{qlength}.%(ext)s")
+    #     ydl_opts = {
+    #         'format': 'bestaudio/best',
+    #         'outtmpl': queue_path,
+    #         'postprocessors': [{
+    #             'key': "FFmpegExtractAudio",
+    #             'preferredcodec': 'mp3',
+    #             'preferredquality': '192',
+    #         }],
+    #     }
 
-        song_search = " ".join(url)
+    #     song_search = " ".join(url)
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            print("downloading queue audio now...\n")
-            ydl.download([f"ytsearch1:{song_search}"])
-        await ctx.send("Adding song " + str(qlength) + " to the queue")
+    #     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    #         print("downloading queue audio now...\n")
+    #         ydl.download([f"ytsearch1:{song_search}"])
+    #     await ctx.send("Adding song " + str(qlength) + " to the queue")
 
 
     #################################################################################
