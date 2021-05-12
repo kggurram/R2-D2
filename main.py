@@ -19,7 +19,7 @@ status = cycle(['X-Wing Simulator',
 
 #load .env file and aquire token
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
 
 #set command prefix
 r2d2 = commands.Bot(command_prefix = '>')

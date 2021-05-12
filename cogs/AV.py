@@ -19,13 +19,15 @@ import youtube_dl
 
 #google project API
 #apikeyfile = open("E:\\Projects\\GitHub\\R2-D2\\apikey.txt", 'r')
-apikey = 'AIzaSyCQ2MevBaPzf0AoNBI8UAYr-vAgURcAWrs'
+apikey = os.environ.get('API_KEY')
+#apikey = 'AIzaSyCQ2MevBaPzf0AoNBI8UAYr-vAgURcAWrs'
 #apikeyfile.close()
 #print(type(apikey))
 
 #google search engine token
 #cxfile = open("E:\\Projects\\GitHub\\R2-D2\\cx.txt", 'r')
-cx = '6634bb3e908fed9a0'
+cx = os.environ.get('CX')
+#cx = '6634bb3e908fed9a0'
 #cxfile.close()
 gis = GoogleImagesSearch(apikey, cx)
 #print(type(cx))
