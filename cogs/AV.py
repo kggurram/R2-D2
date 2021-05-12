@@ -18,19 +18,11 @@ import youtube_dl
 # from main import r2d2
 
 #google project API
-#apikeyfile = open("E:\\Projects\\GitHub\\R2-D2\\apikey.txt", 'r')
 apikey = os.environ.get('API_KEY')
-#apikey = 'AIzaSyCQ2MevBaPzf0AoNBI8UAYr-vAgURcAWrs'
-#apikeyfile.close()
-#print(type(apikey))
 
 #google search engine token
-#cxfile = open("E:\\Projects\\GitHub\\R2-D2\\cx.txt", 'r')
 cx = os.environ.get('CX')
-#cx = '6634bb3e908fed9a0'
-#cxfile.close()
 gis = GoogleImagesSearch(apikey, cx)
-#print(type(cx))
 
 #Audio/Visual commands class
 class AV(commands.Cog):
@@ -114,6 +106,8 @@ class AV(commands.Cog):
             return
         f.close()
   
+    ###################################################################################
+
     # @commands.command(aliases=["p"])
     # async def play(self, ctx, *url: str):
     #     print("accepted play command")
@@ -271,6 +265,10 @@ class AV(commands.Cog):
     #         print("downloading queue audio now...\n")
     #         ydl.download([f"ytsearch1:{song_search}"])
     #     await ctx.send("Adding song " + str(qlength) + " to the queue")
+
+
+    #################################################################################
+
 
     #google image search command
     @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])

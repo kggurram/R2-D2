@@ -17,8 +17,7 @@ status = cycle(['X-Wing Simulator',
                 'Saving the Galaxy'
                 ])
 
-#load .env file and aquire token
-load_dotenv()
+#Aquire token locally from .env file or from Heroku config vars
 TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
 
 #set command prefix
