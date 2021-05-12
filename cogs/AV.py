@@ -112,7 +112,7 @@ class AV(commands.Cog):
     async def play(self, ctx, *url: str):
         print("accepted play command")
         channel = ctx.message.author.voice.channel
-        voice1 = get(ctx.voice_clients, guild=ctx.guild)
+        voice1 = get(ctx.voice_client, guild=ctx.guild)
 
         if voice1 is not None:
             await voice1.move_to(channel)
@@ -182,7 +182,7 @@ class AV(commands.Cog):
 
         await ctx.send("Hold on, getting everything ready (this clears the queue as well)")
 
-        voicenew = get(ctx.voice_clients, guild=ctx.guild)
+        voicenew = get(ctx.voice_client, guild=ctx.guild)
 
         ydl_opts = {
             'format': 'bestaudio/best',
@@ -209,7 +209,7 @@ class AV(commands.Cog):
 
     @commands.command()
     async def pause(self, ctx):
-        voice2 = get(ctx.voice_clients, guild=ctx.guild)
+        voice2 = get(ctx.voice_client, guild=ctx.guild)
 
         if voice2 and voice2.is_playing():
             voice2.pause()
@@ -222,7 +222,7 @@ class AV(commands.Cog):
 
     @commands.command()
     async def skip(self, ctx):
-        voice3 = get(ctx.voice_clients, guild=ctx.guild)
+        voice3 = get(ctx.voice_client, guild=ctx.guild)
         queues.clear()
         if voice3 and voice3.is_playing():
             voice3.stop()
