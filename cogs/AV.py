@@ -273,23 +273,24 @@ class AV(commands.Cog):
     #google image search command
     @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])
     async def googleimage(self, ctx,*imaged):
-        Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
+        #Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
+        Images_infile = os.path.isdir("../Images")
         await ctx.send("Beep, boop...")
         try:
-            Images_folder = "E:\Projects\GitHub\R2-D2\Images"
+            Images_folder = "../Images"
             if Images_infile is True:
                 shutil.rmtree(Images_folder)
                 print("Removed old Images folder")
-                os.mkdir("E:\Projects\GitHub\R2-D2\Images")
+                os.mkdir("../Images")
                 print("Made new Images folder")
             else:
-                os.mkdir("E:\Projects\GitHub\R2-D2\Images")
+                os.mkdir("../Images")
                 print("images_infile was false, making images folder")
         except:
             print("No old images folder")
-            os.mkdir("E:\Projects\GitHub\R2-D2\Images")
+            os.mkdir("../Images")
             print("Made new images folder")
-        Images_infile2 = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
+        Images_infile2 = os.path.isdir("../Images")
         if Images_infile2 is False:
             return await ctx.send("Brrp-bloop :(")
         q = " ".join(imaged)
@@ -304,17 +305,17 @@ class AV(commands.Cog):
             'imgSize': None,
             'imgDominantColor': None
         }
-        gis.search(search_params=_search_params, path_to_dir='E:\Projects\GitHub\R2-D2\Images')
+        gis.search(search_params=_search_params, path_to_dir='../Images')
         count = 1
-        dirrr = "E:\Projects\GitHub\R2-D2\Images"
+        dirrr = "../Images"
         for file in os.listdir(dirrr):
             if file.endswith(".jpg"):
-                os.rename(f"E:\Projects\GitHub\R2-D2\Images\{file}",
-                          f"E:\Projects\GitHub\R2-D2\Images\image{count}.jpg")
+                os.rename(f"../Images/{file}",
+                          f"../Images/image{count}.jpg")
                 count += 1
-        for image in os.listdir('E:\Projects\GitHub\R2-D2\Images'):
+        for image in os.listdir('../Images'):
             if image.startswith("image"):
-                await ctx.send(file=discord.File(f'E:\Projects\GitHub\R2-D2\Images\{image}'))
+                await ctx.send(file=discord.File(f'../Images/{image}'))
 
 #required setup def
 def setup(r2d2):
