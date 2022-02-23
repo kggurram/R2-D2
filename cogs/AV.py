@@ -337,7 +337,7 @@ class AV(commands.Cog):
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
         FFMPEG_OPTIONS = {
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        voice = ctx.message.guild.voice_clients
+        voice = discord.utils.get(ctx.voice_clients,ctx.message.author.voice_channel)
 
         if not voice.is_playing():
             with YoutubeDL(YDL_OPTIONS) as ydl:
@@ -356,7 +356,7 @@ class AV(commands.Cog):
     # command to resume voice if it is paused
     @commands.command()
     async def resume(self, ctx):
-        voice = ctx.message.guild.voice_clients
+        voice = discord.utils.get(ctx.voice_clients,ctx.message.author.voice_channel)
 
         if not voice.is_playing():
             voice.resume()
@@ -366,7 +366,7 @@ class AV(commands.Cog):
     # command to pause voice if it is playing
     @commands.command()
     async def pause(self, ctx):
-        voice = ctx.message.guild.voice_clients
+        voice = discord.utils.get(ctx.voice_clients,ctx.message.author.voice_channel)
 
         if voice.is_playing():
             voice.pause()
@@ -376,7 +376,7 @@ class AV(commands.Cog):
     # command to stop voice
     @commands.command()
     async def stop(self, ctx):
-        voice = ctx.message.guild.voice_clients
+        voice = discord.utils.get(ctx.voice_clients,ctx.message.author.voice_channel)
 
         if voice.is_playing():
             voice.stop()
