@@ -363,9 +363,9 @@ class AV(commands.Cog):
 
 
     # command to pause voice if it is playing
-    @client.command()
+    @commands.command()
     async def pause(ctx):
-        voice = get(client.voice_clients, guild=ctx.guild)
+        voice = get(commands.voice_clients, guild=ctx.guild)
 
         if voice.is_playing():
             voice.pause()
@@ -373,9 +373,9 @@ class AV(commands.Cog):
 
 
     # command to stop voice
-    @client.command()
+    @commands.command()
     async def stop(ctx):
-        voice = get(client.voice_clients, guild=ctx.guild)
+        voice = get(commands.voice_clients, guild=ctx.guild)
 
         if voice.is_playing():
             voice.stop()
