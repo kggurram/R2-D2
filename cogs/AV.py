@@ -333,7 +333,7 @@ class AV(commands.Cog):
 
     # command to play sound from a youtube URL
     @commands.command()
-    async def play(ctx, url):
+    async def play(self, ctx, url):
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
         FFMPEG_OPTIONS = {
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
