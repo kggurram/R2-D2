@@ -16,11 +16,11 @@ from bs4 import BeautifulSoup
 from discord.utils import get
 import youtube_dl
 import aiohttp
-from github import Github
+# from github import Github
 # from main import r2d2
 
-g = Github('PERSONAL_ACCESS_TOKEN')
-repository = g.get_user().get_repo('R2-D2')
+# g = Github('PERSONAL_ACCESS_TOKEN')
+# repository = g.get_user().get_repo('R2-D2')
 
 #google project API
 apikey = os.environ.get('API_KEY')
@@ -276,8 +276,8 @@ class AV(commands.Cog):
 
 
     #google image search command
-    @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])
-    async def googleimage(self, ctx,*imaged):
+    # @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])
+    # async def googleimage(self, ctx,*imaged):
         # Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
         # Images_infile = os.path.isdir("../Images")
         # await ctx.send("Beep, boop...")
@@ -311,7 +311,7 @@ class AV(commands.Cog):
         #     'imgDominantColor': None
         # }
         # gis.search(search_params=_search_params, path_to_dir='../Images')
-        count = 1
+        # count = 1
         # dirrr = "../Images"
         # for file in os.listdir(dirrr):
         #     if file.endswith(".jpg"):
@@ -321,8 +321,8 @@ class AV(commands.Cog):
         # for image in os.listdir('../Images'):
         #     if image.startswith("image"):
         #         await ctx.send(file=discord.File(f'../Images/{image}'))
-        filename = '../Images/image{count}.jpg'
-        f = repository.create_file(filename, "create file")
+        # filename = '../Images/image{count}.jpg'
+        # f = repository.create_file(filename, "create file")
 
 
 #required setup def
