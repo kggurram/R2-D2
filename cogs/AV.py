@@ -337,7 +337,7 @@ class AV(commands.Cog):
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
         FFMPEG_OPTIONS = {
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        voice = get(commands.voice_clients, guild=ctx.guild)
+        voice = get(ctx.voice_clients, guild=ctx.guild)
 
         if not voice.is_playing():
             with YoutubeDL(YDL_OPTIONS) as ydl:
@@ -356,7 +356,7 @@ class AV(commands.Cog):
     # command to resume voice if it is paused
     @commands.command()
     async def resume(ctx):
-        voice = get(commands.voice_clients, guild=ctx.guild)
+        voice = get(ctx.voice_clients, guild=ctx.guild)
 
         if not voice.is_playing():
             voice.resume()
@@ -366,7 +366,7 @@ class AV(commands.Cog):
     # command to pause voice if it is playing
     @commands.command()
     async def pause(ctx):
-        voice = get(commands.voice_clients, guild=ctx.guild)
+        voice = get(ctx.voice_clients, guild=ctx.guild)
 
         if voice.is_playing():
             voice.pause()
@@ -376,7 +376,7 @@ class AV(commands.Cog):
     # command to stop voice
     @commands.command()
     async def stop(ctx):
-        voice = get(commands.voice_clients, guild=ctx.guild)
+        voice = get(ctx.voice_clients, guild=ctx.guild)
 
         if voice.is_playing():
             voice.stop()
