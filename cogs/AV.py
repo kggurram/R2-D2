@@ -333,11 +333,11 @@ class AV(commands.Cog):
 
     # command to play sound from a youtube URL
     @commands.command()
-    async def play(self, url):
+    async def play(self, ctx, url):
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
         FFMPEG_OPTIONS = {
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        voice = get(commands.voice_clients, guild=commands.guild)
+        voice = ctx.message.guild.voice_client
 
         if not voice.is_playing():
             with YoutubeDL(YDL_OPTIONS) as ydl:
@@ -345,18 +345,18 @@ class AV(commands.Cog):
             URL = info['url']
             voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
             voice.is_playing()
-            await commands.send('Bot is playing')
+            await ctx.send('Bot is playing')
 
     # check if the bot is already playing
         else:
-            await commands.send("Bot is already playing")
+            await ctx.send("Bot is already playing")
             return
 
 
     # command to resume voice if it is paused
     @commands.command()
-    async def resume(ctx):
-        voice = get(ctx.voice_clients, guild=ctx.guild)
+    async def resume(self, ctx):
+        voice = ctx.message.guild.voice_client
 
         if not voice.is_playing():
             voice.resume()
@@ -365,8 +365,8 @@ class AV(commands.Cog):
 
     # command to pause voice if it is playing
     @commands.command()
-    async def pause(ctx):
-        voice = get(ctx.voice_clients, guild=ctx.guild)
+    async def pause(self, ctx):
+        voice = ctx.message.guild.voice_client
 
         if voice.is_playing():
             voice.pause()
@@ -375,8 +375,8 @@ class AV(commands.Cog):
 
     # command to stop voice
     @commands.command()
-    async def stop(ctx):
-        voice = get(ctx.voice_clients, guild=ctx.guild)
+    async def stop(self, ctx):
+        voice = ctx.message.guild.voice_client
 
         if voice.is_playing():
             voice.stop()
