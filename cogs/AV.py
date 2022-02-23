@@ -15,7 +15,12 @@ from google_images_search import GoogleImagesSearch
 from bs4 import BeautifulSoup
 from discord.utils import get
 import youtube_dl
+import aiohttp
+from github import Github
 # from main import r2d2
+
+g = Github('PERSONAL_ACCESS_TOKEN')
+repository = g.get_user().get_repo('R2-D2')
 
 #google project API
 apikey = os.environ.get('API_KEY')
@@ -273,49 +278,52 @@ class AV(commands.Cog):
     #google image search command
     @commands.command(aliases=["gi","googleimages","googlei","gimage","gimages"])
     async def googleimage(self, ctx,*imaged):
-        #Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
-        Images_infile = os.path.isdir("../Images")
-        await ctx.send("Beep, boop...")
-        try:
-            Images_folder = "../Images"
-            if Images_infile is True:
-                shutil.rmtree(Images_folder)
-                print("Removed old Images folder")
-                os.mkdir("../Images")
-                print("Made new Images folder")
-            else:
-                os.mkdir("../Images")
-                print("images_infile was false, making images folder")
-        except:
-            print("No old images folder")
-            os.mkdir("../Images")
-            print("Made new images folder")
-        Images_infile2 = os.path.isdir("../Images")
-        if Images_infile2 is False:
-            return await ctx.send("Brrp-bloop :(")
-        q = " ".join(imaged)
-        start = 1
-        _search_params = {
-            'q': q,
-            'searchType': 'image',
-            'start': start,
-            'safe': 'medium',
-            'fileType': 'jpg',
-            'imgType': None,
-            'imgSize': None,
-            'imgDominantColor': None
-        }
-        gis.search(search_params=_search_params, path_to_dir='../Images')
+        # Images_infile = os.path.isdir("E:\Projects\GitHub\R2-D2\Images")
+        # Images_infile = os.path.isdir("../Images")
+        # await ctx.send("Beep, boop...")
+        # try:
+        #     Images_folder = "../Images"
+        #     if Images_infile is True:
+        #         shutil.rmtree(Images_folder)
+        #         print("Removed old Images folder")
+        #         os.mkdir("../Images")
+        #         print("Made new Images folder")
+        #     else:
+        #         os.mkdir("../Images")
+        #         print("images_infile was false, making images folder")
+        # except:
+        #     print("No old images folder")
+        #     os.mkdir("../Images")
+        #     print("Made new images folder")
+        # Images_infile2 = os.path.isdir("../Images")
+        # if Images_infile2 is False:
+        #     return await ctx.send("Brrp-bloop :(")
+        # q = " ".join(imaged)
+        # start = 1
+        # _search_params = {
+        #     'q': q,
+        #     'searchType': 'image',
+        #     'start': start,
+        #     'safe': 'medium',
+        #     'fileType': 'jpg',
+        #     'imgType': None,
+        #     'imgSize': None,
+        #     'imgDominantColor': None
+        # }
+        # gis.search(search_params=_search_params, path_to_dir='../Images')
         count = 1
-        dirrr = "../Images"
-        for file in os.listdir(dirrr):
-            if file.endswith(".jpg"):
-                os.rename(f"../Images/{file}",
-                          f"../Images/image{count}.jpg")
-                count += 1
-        for image in os.listdir('../Images'):
-            if image.startswith("image"):
-                await ctx.send(file=discord.File(f'../Images/{image}'))
+        # dirrr = "../Images"
+        # for file in os.listdir(dirrr):
+        #     if file.endswith(".jpg"):
+        #         os.rename(f"../Images/{file}",
+        #                   f"../Images/image{count}.jpg")
+        #         count += 1
+        # for image in os.listdir('../Images'):
+        #     if image.startswith("image"):
+        #         await ctx.send(file=discord.File(f'../Images/{image}'))
+        filename = '../Images/image{count}.jpg'
+        f = repository.create_file(filename, "create file")
+
 
 #required setup def
 def setup(r2d2):
