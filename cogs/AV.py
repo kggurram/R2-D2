@@ -16,6 +16,11 @@ from bs4 import BeautifulSoup
 from discord.utils import get
 import youtube_dl
 import aiohttp
+
+from discord import FFmpegPCMAudio
+from discord import TextChannel
+from youtube_dl import YoutubeDL
+
 # from github import Github
 # from main import r2d2
 
